@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Search from '../HeaderComponents/Search';
 import Check from '../HeaderComponents/Check';
-import FamilyRooms from '../HeaderComponents/FamilyRooms';
+import FamilyRooms from '../HeaderComponents/RoomType';
 import PriceSlider from '../HeaderComponents/PriceSlider';
 import Choices from '../HeaderComponents/Choices';
 import Location from '../HeaderComponents/Location';
