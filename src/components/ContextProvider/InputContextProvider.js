@@ -46,7 +46,7 @@ const reducer = (state, action) => {
             checkInOutDates: { ...state.checkInOutDates, checkOut: action.inputCheck }
         }
     }
-    return initialState
+    return initialState;
 }
 
 const InputContextProvider = ({ children }) => {

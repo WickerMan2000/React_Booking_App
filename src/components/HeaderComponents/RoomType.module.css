@@ -1,4 +1,4 @@
 .RoomType {
-    background-color: rgb(114, 114, 245);
+    background-color: rgba(114, 114, 245, 0.7);
     grid-column: 3/5;
 }
