@@ -1,5 +1,7 @@
 .PriceSlider {
     background-color: transparent;
+    grid-column: 1/2;
+    grid-row: 3/4;
     height: 100px;
 }
 

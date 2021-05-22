@@ -1,6 +1,6 @@
 .RoomType {
     background-color: rgba(114, 114, 245, 0.7);
-    grid-column: 3/5;
+    grid-column: 3/4;
     margin: 1rem auto;
     width: 90%;
     max-width: 40rem;

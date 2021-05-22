@@ -1,26 +1,63 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Search from '../HeaderComponents/Search';
 import Check from '../HeaderComponents/Check';
-import FamilyRooms from '../HeaderComponents/RoomType';
 import PriceSlider from '../HeaderComponents/PriceSlider';
-import Choices from '../HeaderComponents/Choices';
-import Location from '../HeaderComponents/Location';
+import Option from '../HeaderComponents/Option';
 import InputContext from '../ContextProvider/InputContext';
 import styles from './Header.module.css';
+import locationStyles from '../HeaderComponents/Location.module.css';
+import roomTypeStyles from '../HeaderComponents/RoomType.module.css'
 
 const Header = () => {
     const initalDateContext = useContext(InputContext);
+    const [roomTypes, setRoomTypes] = useState([]);
+    const [cities, setCities] = useState([]);
     const fix = true;
 
     return (
         <div className={styles.Header}>
             <Search />
-            <Check itIsCheckedIn={fix} enableCalendar={false} initialDate={initalDateContext.checkInOutDates[0]} title='Check-In' />
-            <Check itIsCheckedOut={!fix} enableCalendar={!initalDateContext.enableIt} initialDate={initalDateContext.checkInOutDates[1]} title='Check-Out' />
-            <FamilyRooms />
+            <Check
+                itIsCheckedIn={fix}
+                enableCalendar={false}
+                initialDate={initalDateContext.checkInOutDates[0]}
+                title='Check-In' />
+            <Check
+                itIsCheckedOut={!fix}
+                enableCalendar={!initalDateContext.enableIt}
+                initialDate={initalDateContext.checkInOutDates[1]}
+                title='Check-Out' />
+            <Option
+                dataTransformation={async data => {
+                    const result = await data.roomtypes.map(roomData => {
+                        return {
+                            roomtype: roomData.name
+                        };
+                    })
+                    setRoomTypes(result);
+                }}
+                dataType={roomTypes}
+                className={roomTypeStyles.RoomType}
+                property={"roomtype"}
+                eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/0.json'} />
             <PriceSlider />
-            <Choices />
-            <Location />
+            <Option
+                dataTransformation={async data => {
+                    const newObject = {}
+                    const result = await data.entries.map(hotelData => {
+                        return {
+                            location: hotelData.city
+                        };
+                    })
+                    const filteredArray = result.filter(object =>
+                        !newObject[object.location] && (newObject[object.location] = true)
+                    );
+                    setCities(filteredArray);
+                }}
+                dataType={cities}
+                className={locationStyles.Location}
+                property={"location"}
+                eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
         </div>
     );
 }
