@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Location.module.css';
 import useHttpRequest from '../../Hooks/useHttpRequest';
+import Select from '../../UI/Select';
+import styles from './Location.module.css';
 
 const Location = () => {
     const [cities, setCities] = useState([]);
@@ -8,7 +9,7 @@ const Location = () => {
 
     useEffect(() => {
         const abortController = new AbortController();
-        const workWithCitiesData = async data => {
+        const workingWithCitiesData = async data => {
             const newObject = {}
             const result = await data.entries.map(hotelData => {
                 return {
@@ -22,22 +23,20 @@ const Location = () => {
         }
         changeLocationHandler(abortController, {
             url: 'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'
-        }, workWithCitiesData);
+        }, workingWithCitiesData);
         return () => abortController.abort();
     }, [changeLocationHandler])
 
     return (
-        <div className={styles.Location}>
-            <select onChange={changeLocationHandler.bind(null, new AbortController())} >
-                {!isLoading && error && <p>{error}</p>}
-                {
-                    cities.map((cityName, index) =>
-                        <option key={index} value={cityName.location}>
-                            {cityName.location}
-                        </option>)
-                }
-            </select>
-        </div>
+        <Select
+            className={styles.Location}
+            onChange={changeLocationHandler.bind(null, new AbortController())}
+            isLoading={isLoading}
+            error={error}
+            data={cities}
+            property={"location"}
+        >
+        </Select>
     );
 }
 

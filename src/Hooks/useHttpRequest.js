@@ -4,7 +4,7 @@ const useHttpRequest = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const changeOptionHandler = useCallback(async (abortController, requestConfiguration, workWithData) => {
+    const changeOptionHandler = useCallback(async (abortController, requestConfiguration, workingWithData) => {
         setIsLoading(true);
         setError(null);
         try {
@@ -15,8 +15,7 @@ const useHttpRequest = () => {
                 throw new Error("An error occured");
             }
             const data = await response.json();
-            console.log(data)
-            workWithData(data);
+            workingWithData(data);
         } catch (error) {
             if (abortController.signal.aborted) {
                 setError(error.message);
