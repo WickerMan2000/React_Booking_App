@@ -1,6 +1,6 @@
 import React from 'react';
-import Hotel from '../BodyComponents/Hotel';
 import Map from '../BodyComponents/Map';
+import HotelList from '../BodyComponents//HotelList';
 import SortingOptions from '../BodyComponents/SortingOptions';
 import styles from './Body.module.css';
 
@@ -11,7 +11,7 @@ const Body = () => {
                 <Map />
                 <SortingOptions />
             </div>
-            <Hotel />
+            <HotelList />
         </div>
     );
 }

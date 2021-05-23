@@ -10,13 +10,15 @@ const initialState = {
     checkInOutDates: {
         checkIn: inititalDate,
         checkOut: inititalDate
-    }
+    },
+    sentData: []
 }
 
 const reducer = (state, action) => {
     if (action.type === 'CHECK_IN_DATE') {
         if (action.inputCheck > state.checkOutDates) {
             return {
+                ...state,
                 enabled: action.enable,
                 checkInDates: state.checkOutDates,
                 checkOutDates: action.inputCheck,
@@ -24,6 +26,7 @@ const reducer = (state, action) => {
             }
         }
         return {
+            ...state,
             enabled: action.enable,
             checkInDates: action.inputCheck,
             checkOutDates: state.checkOutDates,
@@ -33,6 +36,7 @@ const reducer = (state, action) => {
     if (action.type === 'CHECK_OUT_DATE') {
         if (action.inputCheck < state.checkInDates) {
             return {
+                ...state,
                 enabled: action.enable,
                 checkInDates: action.inputCheck,
                 checkOutDates: state.checkInDates,
@@ -40,10 +44,17 @@ const reducer = (state, action) => {
             }
         }
         return {
+            ...state,
             enabled: action.enable,
             checkInDates: state.checkInDates,
             checkOutDates: action.inputCheck,
             checkInOutDates: { ...state.checkInOutDates, checkOut: action.inputCheck }
+        }
+    }
+    if (action.type === "SEARCHED_DATA") {
+        return {
+            ...state,
+            sentData: action.searchedData
         }
     }
     return initialState;
@@ -55,6 +66,7 @@ const InputContextProvider = ({ children }) => {
     const inputDateContext = {
         enableIt: inputState.enabled,
         checkInOutDates: Object.values(inputState.checkInOutDates),
+        outPutData: inputState.sentData,
         dispatch: dispatchInputState
     }
 
