@@ -1,0 +1,7 @@
+.CoHeader {
+    display: grid;
+    margin-top: 0.2rem;
+    grid-template-columns: repeat(3, 33%);
+    background: rgb(56, 175, 175);
+    height: 90px;
+}

@@ -1,0 +1,9 @@
+.SortingOptions {
+    grid-column: 3/4;
+    margin: 0.6rem;
+    width: 90%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: rgba(164, 117, 207, 0.6);
+}

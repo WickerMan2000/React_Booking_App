@@ -1,9 +1,9 @@
-import styles from './Hotel.module.css';
 import React from 'react';
+import styles from './Hotel.module.css';
 
 const Hotel = () => { 
     return (
-        <div>Hotel</div>
+        <div className={styles.Hotel}>Hotel</div>
     );
 }
 

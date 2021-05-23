@@ -7,8 +7,10 @@ import styles from './Body.module.css';
 const Body = () => {
     return (
         <div>
-            <SortingOptions />
-            <Map />
+            <div className={styles.CoHeader}>
+                <Map />
+                <SortingOptions />
+            </div>
             <Hotel />
         </div>
     );

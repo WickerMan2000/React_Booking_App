@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useHttpRequest from '../../Hooks/useHttpRequest';
+import useHttpRequest from '../../CustomHooks/useHttpRequest';
 import Select from '../../UI/Select';
 
 const Option = ({ dataTransformation, dataType, className, property, eachOptionUrl, text }) => {

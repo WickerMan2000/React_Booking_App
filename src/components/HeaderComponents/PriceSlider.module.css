@@ -5,6 +5,7 @@
     grid-template-rows: repeat(5, 25%);
     margin: 0.5rem;
     text-align: center;
+    width: 90%;
     border-radius: 12px;
     grid-column: 1/2;
     grid-row: 3/4;

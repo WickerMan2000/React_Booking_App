@@ -6,7 +6,7 @@ import Option from '../HeaderComponents/Option';
 import InputContext from '../ContextProvider/InputContext';
 import styles from './Header.module.css';
 import locationStyles from '../HeaderComponents/Location.module.css';
-import roomTypeStyles from '../HeaderComponents/RoomType.module.css'
+import roomTypeStyles from '../HeaderComponents/RoomType.module.css';
 
 const Header = () => {
     const initalDateContext = useContext(InputContext);

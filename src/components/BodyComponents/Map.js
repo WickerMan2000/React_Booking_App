@@ -3,7 +3,7 @@ import styles from './Map.module.css';
 
 const Map = () => { 
     return (
-        <div>Map</div>
+        <div className={styles.Map}>Map</div>
     );
 }
 

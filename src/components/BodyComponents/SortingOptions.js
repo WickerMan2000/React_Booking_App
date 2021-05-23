@@ -3,7 +3,7 @@ import styles from './SortingOptions.module.css';
 
 const SortingOptions = () => { 
     return (
-        <div>SortingOptions</div>
+        <div className={styles.SortingOptions}>SortingOptions</div>
     );
 }
 
