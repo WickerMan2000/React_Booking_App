@@ -1,11 +1,9 @@
 .Location {
     background-color: cadetblue;
-    margin: 1rem auto;
-    width: 90%;
-    max-width: 40rem;
+    margin: 0.6rem;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 12px;
     grid-column: 3/4;
-    grid-row: 3/4;
+    grid-row: 2/3;
 }

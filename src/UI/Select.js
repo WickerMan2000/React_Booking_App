@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Select = ({ className, onChange, isLoading, error, data, property }) => {
+const Select = ({ onChange, isLoading, error, data, property, text }) => {
 
     const dataHandler = event => {
         const { value } = event.target;
@@ -8,8 +8,23 @@ const Select = ({ className, onChange, isLoading, error, data, property }) => {
     }
 
     return (
-        <div className={className}>
-            <select onChange={dataHandler} >
+        <div style={{
+            'display': 'grid',
+            'grid-template-columns': 'repeat(10, 10%)',
+            'grid-template-rows': 'repeat(6, 0.3rem)'
+        }}>
+            <p style={{
+                'display': 'grid',
+                'grid-column': '1/4',
+                'grid-row': '2/6',
+                'margin-top': '0.1px',
+                'font-size': 'medium'
+            }}>{text}:</p>
+            <select onChange={dataHandler} style={{
+                'grid-column': '4/10',
+                'grid-row': '1/6',
+                'font-size': 'large'
+            }} >
                 {!isLoading && error && <p>{error}</p>}
                 {
                     data.map((typeOfData, index) =>

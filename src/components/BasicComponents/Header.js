@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import Search from '../HeaderComponents/Search';
 import Check from '../HeaderComponents/Check';
 import PriceSlider from '../HeaderComponents/PriceSlider';
@@ -14,6 +14,28 @@ const Header = () => {
     const [cities, setCities] = useState([]);
     const fix = true;
 
+    const roomDataName = useCallback(async data => {
+        const result = await data.roomtypes.map(roomData => {
+            return {
+                roomtype: roomData.name
+            };
+        })
+        setRoomTypes(result);
+    }, [])
+
+    const cityDataLocation = useCallback(async data => {
+        const newObject = {}
+        const result = await data.entries.map(hotelData => {
+            return {
+                location: hotelData.city
+            };
+        })
+        const filteredArray = result.filter(object =>
+            !newObject[object.location] && (newObject[object.location] = true)
+        );
+        setCities(filteredArray);
+    }, [])
+
     return (
         <div className={styles.Header}>
             <Search />
@@ -28,32 +50,16 @@ const Header = () => {
                 initialDate={initalDateContext.checkInOutDates[1]}
                 title='Check-Out' />
             <Option
-                dataTransformation={async data => {
-                    const result = await data.roomtypes.map(roomData => {
-                        return {
-                            roomtype: roomData.name
-                        };
-                    })
-                    setRoomTypes(result);
-                }}
+                text="Rooms"
+                dataTransformation={roomDataName}
                 dataType={roomTypes}
                 className={roomTypeStyles.RoomType}
                 property={"roomtype"}
                 eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/0.json'} />
             <PriceSlider />
             <Option
-                dataTransformation={async data => {
-                    const newObject = {}
-                    const result = await data.entries.map(hotelData => {
-                        return {
-                            location: hotelData.city
-                        };
-                    })
-                    const filteredArray = result.filter(object =>
-                        !newObject[object.location] && (newObject[object.location] = true)
-                    );
-                    setCities(filteredArray);
-                }}
+                text="Cities"
+                dataTransformation={cityDataLocation}
                 dataType={cities}
                 className={locationStyles.Location}
                 property={"location"}

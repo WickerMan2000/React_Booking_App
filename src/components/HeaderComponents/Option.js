@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useHttpRequest from '../../Hooks/useHttpRequest';
 import Select from '../../UI/Select';
 
-const Option = ({ dataTransformation, dataType, className, property, eachOptionUrl }) => {
+const Option = ({ dataTransformation, dataType, className, property, eachOptionUrl, text }) => {
     const { error, isLoading, changeOptionHandler } = useHttpRequest();
 
     useEffect(() => {
@@ -14,13 +14,13 @@ const Option = ({ dataTransformation, dataType, className, property, eachOptionU
     }, [changeOptionHandler, dataTransformation, eachOptionUrl])
 
     return (
-        <div workingWithData={dataTransformation}>
+        <div workingWithData={dataTransformation} className={className}>
             <Select
-                className={className}
                 isLoading={isLoading}
                 error={error}
                 data={dataType}
                 property={property}
+                text={text}
                 onChange={changeOptionHandler.bind(null, new AbortController())}
             >
             </Select>

@@ -16,21 +16,19 @@ const PriceSlider = () => {
     }
 
     return (
-        <div className={styles.PriceSlider}>
-            <p>Price</p>
-            <div>
-                <label className={styles.Label} for="price">max $6,090</label>
-                <input
-                    onChange={priceChangeHandler}
-                    type="range"
-                    min="1"
-                    max="6090"
-                    value={price.size}
-                    className={styles.Slider}
-                    id="myRange"
-                    step="1"
-                />
-            </div>
+        <div className={styles.Slider}>
+            <p className={styles.Price}>Price:</p>
+            <label className={styles.Label} for="price">max $6,090</label>
+            <input
+                onChange={priceChangeHandler}
+                type="range"
+                min="1"
+                max="6090"
+                value={price.size}
+                id="myRange"
+                step="1"
+                className={styles.Input}
+            />
         </div>
     );
 }

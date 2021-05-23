@@ -39,7 +39,7 @@ const Check = ({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedO
                 onClick={() => { setReset(true) }}
                 title="Reset">
             </Button>
-            <p className={styles.Title}>{title}</p>
+            <p className={styles.Title}>{title}:</p>
             <input
                 className={styles.Input}
                 type='date'
