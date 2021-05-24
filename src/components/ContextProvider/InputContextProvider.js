@@ -22,7 +22,10 @@ const reducer = (state, action) => {
                 enabled: action.enable,
                 checkInDates: state.checkOutDates,
                 checkOutDates: action.inputCheck,
-                checkInOutDates: { ...state.checkInOutDates, checkOut: action.inputCheck }
+                checkInOutDates: {
+                    ...state.checkInOutDates,
+                    checkOut: action.inputCheck
+                }
             }
         }
         return {
@@ -30,7 +33,10 @@ const reducer = (state, action) => {
             enabled: action.enable,
             checkInDates: action.inputCheck,
             checkOutDates: state.checkOutDates,
-            checkInOutDates: { ...state.checkInOutDates, checkIn: action.inputCheck }
+            checkInOutDates: {
+                ...state.checkInOutDates,
+                checkIn: action.inputCheck
+            }
         }
     }
     if (action.type === 'CHECK_OUT_DATE') {
@@ -40,7 +46,10 @@ const reducer = (state, action) => {
                 enabled: action.enable,
                 checkInDates: action.inputCheck,
                 checkOutDates: state.checkInDates,
-                checkInOutDates: { ...state.checkInOutDates, checkIn: action.inputCheck }
+                checkInOutDates: {
+                    ...state.checkInOutDates,
+                    checkIn: action.inputCheck
+                }
             }
         }
         return {
@@ -48,7 +57,10 @@ const reducer = (state, action) => {
             enabled: action.enable,
             checkInDates: state.checkInDates,
             checkOutDates: action.inputCheck,
-            checkInOutDates: { ...state.checkInOutDates, checkOut: action.inputCheck }
+            checkInOutDates: {
+                ...state.checkInOutDates,
+                checkOut: action.inputCheck
+            }
         }
     }
     if (action.type === "SEARCHED_DATA") {

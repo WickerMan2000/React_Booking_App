@@ -10,7 +10,7 @@ const Search = () => {
     const context = useContext(InputContext);
 
     const queryFunction = useCallback(async () => {
-        const query = enteredText.length === 0 ? '' : `?orderBy="city"&equalTo="${enteredText}"`;
+        const query = enteredText.length !== 0 && `?orderBy="city"&equalTo="${enteredText}"`;
         const response = await fetch('https://mybooking-28176-default-rtdb.firebaseio.com/1/entries.json' + query);
         const data = await response.json();
         const result = [];
@@ -28,7 +28,6 @@ const Search = () => {
             })
         }
         setResult(result);
-
     }, [enteredText])
 
     useEffect(() => {
@@ -52,12 +51,14 @@ const Search = () => {
             <p className={styles.title}>My Booking</p>
             <input
                 type="text"
+                className={styles.SearchBar}
+                onChange={getSearchedText}
                 value={enteredText.charAt(0).toUpperCase() + enteredText.slice(1)}
-                className={styles.SearchBar} onChange={getSearchedText}
             />
             <Button
                 title='Search'
                 onClick={() => setIsClicked(true)}
+                disabled={enteredText.length === 0}
             >
             </Button>
         </div>

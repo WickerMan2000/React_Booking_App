@@ -1,3 +1,9 @@
 .Hotel {
     height: auto;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 0.6rem;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    list-style: none;
 }
