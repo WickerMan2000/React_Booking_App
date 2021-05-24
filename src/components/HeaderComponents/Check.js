@@ -41,10 +41,10 @@ const Check = ({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedO
             </Button>
             <p className={styles.Title}>{title}:</p>
             <input
-                className={styles.Input}
                 type='date'
                 min={new Date()}
                 max='2022-12-31'
+                className={styles.Input}
                 onChange={dateChangeHandler}
                 value={reset ? new Date() : initialDate}
                 disabled={!checkInState && enableCalendar}

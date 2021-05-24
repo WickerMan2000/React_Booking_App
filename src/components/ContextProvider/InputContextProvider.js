@@ -11,7 +11,8 @@ const initialState = {
         checkIn: inititalDate,
         checkOut: inititalDate
     },
-    sentData: []
+    sentData: [],
+    value: 0
 }
 
 const reducer = (state, action) => {
@@ -69,6 +70,12 @@ const reducer = (state, action) => {
             sentData: action.searchedData
         }
     }
+    if (action.type === "CHANGE_VALUE") {
+        return {
+            ...state,
+            value: action.value
+        }
+    }
     return initialState;
 }
 
@@ -79,6 +86,7 @@ const InputContextProvider = ({ children }) => {
         enableIt: inputState.enabled,
         checkInOutDates: Object.values(inputState.checkInOutDates),
         outPutData: inputState.sentData,
+        sliderValue: inputState.value,
         dispatch: dispatchInputState
     }
 

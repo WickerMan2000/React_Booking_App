@@ -1,33 +1,30 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useState } from 'react';
+import InputContext from '../ContextProvider/InputContext';
 import styles from './PriceSlider.module.css';
 
-const priceReducer = (_, action) => {
-    if (action.type === 'CHANGE_VALUE') {
-        return { size: action.payload }
-    }
-}
-
 const PriceSlider = () => {
-    const [price, dispatchPrice] = useReducer(priceReducer, { size: 3000 });
+    const [price, setPrice] = useState(0);
+    const context = useContext(InputContext);
 
     const priceChangeHandler = event => {
-        const { value } = event.target.value;
-        dispatchPrice({ type: 'CHANGE_VALUE', payload: value });
+        const { value } = event.target;
+        context.dispatch({ type: 'CHANGE_VALUE', value: value });
+        setPrice(value);
     }
 
     return (
         <div className={styles.Slider}>
             <p className={styles.Price}>Price:</p>
-            <label className={styles.Label} for="price">max $6,090</label>
+            <label className={styles.Label} for="price">max $6,000</label>
             <input
-                onChange={priceChangeHandler}
-                type="range"
-                min="1"
-                max="6090"
-                value={price.size}
+                min={1}
+                max={6000}
+                value={price}
                 id="myRange"
-                step="1"
+                type="range"
+                step={1}
                 className={styles.Input}
+                onChange={priceChangeHandler}
             />
         </div>
     );

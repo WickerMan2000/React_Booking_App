@@ -1,9 +1,71 @@
 .Hotel {
+    display: grid;
     height: auto;
-    background-color: rgba(255, 255, 255, 0.6);
     margin: 0.6rem;
-    text-align: center;
     padding: 1rem;
+    text-align: center;
+    list-style: none;
     border-radius: 12px;
+    border: 0.3rem solid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(10, 10%);
+    background-color: rgba(255, 255, 255, 0.6);
+    animation: hotel-appears 800ms ease-out forwards;
+}
+
+img {
+    grid-column: 1/4;
+    grid-row: 1/6;
+    border: 0.5rem solid;
+    width: 500px;
+    height: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h1 {
+    grid-column: 5/8;
+    grid-row: 1/2;
+    font-size: xx-large;
+}
+
+h2 {
+    grid-column: 5/8;
+    grid-row: 7/8;
+    font-size: xx-large;
+}
+
+h3 {
+    grid-column: 5/8;
+    grid-row: 3/4;
+    font-size: large;
+}
+
+h4 {
+    grid-column: 5/8;
+    grid-row: 5/6;
+    color: rgb(241, 223, 121);
+}
+
+ul {
+    grid-column: 8/10;
+    grid-row: 2/7;
+    font-size: xx-large;
     list-style: none;
 }
+
+li {
+    margin: 2rem;
+    color: rgba(170, 71, 71, 0.8);
+}
+
+@keyframes hotel-appears {
+    from {
+      opacity: 0;
+      transform: translateY(-2rem);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(1rem);
+    }
+  }
