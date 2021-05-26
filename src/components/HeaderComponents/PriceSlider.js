@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react';
-import InputContext from '../ContextProvider/InputContext';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { sliderPriceActions } from '../../Store/index';
 import styles from './PriceSlider.module.css';
 
 const PriceSlider = () => {
     const [price, setPrice] = useState(0);
-    const context = useContext(InputContext);
+    const dispatch = useDispatch();
 
     const priceChangeHandler = event => {
         const { value } = event.target;
-        context.dispatch({ type: 'CHANGE_VALUE', value: value });
+        dispatch(sliderPriceActions.changeValue(value));
         setPrice(value);
     }
 

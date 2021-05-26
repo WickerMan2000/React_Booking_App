@@ -3,7 +3,7 @@ import InputContext from '../ContextProvider/InputContext';
 import Button from '../../UI/Button';
 import styles from './Check.module.css';
 
-const Check = ({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedOut }) => {
+const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedOut }) => {
     const [reset, setReset] = useState(false);
     const [checkInState, setCheckInState] = useState(false);
     const context = useContext(InputContext);
@@ -11,6 +11,8 @@ const Check = ({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedO
     useEffect(() => {
         setReset(false);
     }, [initialDate])
+
+    console.log('hi');
 
     const dateChangeHandler = event => {
         const { value } = event.target;
@@ -51,6 +53,6 @@ const Check = ({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedO
             />
         </div>
     );
-}
+})
 
 export default Check;

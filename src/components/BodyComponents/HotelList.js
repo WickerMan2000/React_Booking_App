@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
-import Hotel from './Hotel';
+import { useSelector } from 'react-redux';
 import InputContext from '../ContextProvider/InputContext';
+import Hotel from './Hotel';
 
 const HotelList = () => {
     const context = useContext(InputContext);
+    const sliderValue = useSelector(state => state.slider.price);
 
     return (
         <ul>
             {context.outPutData.map(hotel =>
-                hotel.price > context.sliderValue &&
+                hotel.price > sliderValue &&
                 (
                     <Hotel
                         city={hotel.city}
