@@ -1,8 +1,10 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialPriceSliderState = { price: 0 };
+const initialSearchedText = { text: [] };
+const initialMapState = { mapUrl: '' }
 
-const sliderPriceSlice = createSlice({
+const priceSliderSlice = createSlice({
     name: 'slider',
     initialState: initialPriceSliderState,
     reducers: {
@@ -12,9 +14,35 @@ const sliderPriceSlice = createSlice({
     }
 });
 
-const store = configureStore({
-    reducer: { slider: sliderPriceSlice.reducer }
+const searchedTextSlice = createSlice({
+    name: 'searcher',
+    initialState: initialSearchedText,
+    reducers: {
+        searchText: (state, action) => {
+            state.text = action.payload;
+        }
+    }
 })
 
+const mapSlice = createSlice({
+    name: 'map',
+    initialState: initialMapState,
+    reducers: {
+        showingMap: (state, action) => {
+            state.mapUrl = action.payload;
+        }
+    }
+})
+
+const store = configureStore({
+    reducer: {
+        slider: priceSliderSlice.reducer,
+        searcher: searchedTextSlice.reducer,
+        map: mapSlice.reducer
+    }
+})
+
+export const priceSliderActions = priceSliderSlice.actions;
+export const searchedTextActions = searchedTextSlice.actions;
+export const mapRelatedActions = mapSlice.actions;
 export default store;
-export const sliderPriceActions = sliderPriceSlice.actions;

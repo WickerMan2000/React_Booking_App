@@ -3,8 +3,9 @@
     height: auto;
     margin: 0.6rem;
     padding: 1rem;
-    text-align: center;
+    cursor: pointer;
     list-style: none;
+    text-align: center;
     border-radius: 12px;
     border: 0.3rem solid;
     grid-template-columns: repeat(10, 10%);

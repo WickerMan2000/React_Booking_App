@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { sliderPriceActions } from '../../Store/index';
+import { priceSliderActions } from '../../Store/index';
 import styles from './PriceSlider.module.css';
 
 const PriceSlider = () => {
@@ -9,7 +9,7 @@ const PriceSlider = () => {
 
     const priceChangeHandler = event => {
         const { value } = event.target;
-        dispatch(sliderPriceActions.changeValue(value));
+        dispatch(priceSliderActions.changeValue(value));
         setPrice(value);
     }
 

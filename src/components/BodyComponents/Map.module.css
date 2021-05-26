@@ -1,7 +1,5 @@
 .Map {
     grid-column: 1/2;
-    padding: 1rem;
     margin: 0.6rem;
-    width: 90%;
     border: 2px solid black;
 }

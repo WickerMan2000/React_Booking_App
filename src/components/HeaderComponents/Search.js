@@ -1,13 +1,14 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import InputContext from '../ContextProvider/InputContext';
+import React, { useCallback, useEffect, useState } from 'react';
+import { searchedTextActions } from '../../Store/index';
 import Button from '../../UI/Button';
 import styles from './Search.module.css';
+import { useDispatch } from 'react-redux';
 
 const Search = () => {
     const [enteredText, setEnteredText] = useState('');
     const [isClicked, setIsClicked] = useState(false);
     const [result, setResult] = useState({});
-    const context = useContext(InputContext);
+    const dispatch = useDispatch();
 
     const queryFunction = useCallback(async () => {
         const query = enteredText.length !== 0 && `?orderBy="city"&equalTo="${enteredText}"`;
@@ -33,13 +34,10 @@ const Search = () => {
     useEffect(() => {
         queryFunction();
         if (isClicked) {
-            context.dispatch({
-                type: "SEARCHED_DATA",
-                searchedData: result
-            })
+            dispatch(searchedTextActions.searchText(result));
         }
         return () => setIsClicked(false);
-    }, [isClicked, context, queryFunction])
+    }, [isClicked, queryFunction, dispatch])
 
     const getSearchedText = event => {
         const { value } = event.target;
@@ -53,7 +51,7 @@ const Search = () => {
                 type="text"
                 className={styles.SearchBar}
                 onChange={getSearchedText}
-                value={enteredText.charAt(0).toUpperCase() + enteredText.slice(1)}
+                value={(enteredText.charAt(0).toUpperCase() + enteredText.slice(1)).trim()}
             />
             <Button
                 title='Search'

@@ -12,8 +12,6 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
         setReset(false);
     }, [initialDate])
 
-    console.log('hi');
-
     const dateChangeHandler = event => {
         const { value } = event.target;
         if (new Date(value) < new Date()) {
