@@ -1,9 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { filterActions } from '../Store/index';
 
 const Select = ({ onChange, isLoading, error, data, property, text }) => {
+    const dispatch = useDispatch();
 
     const dataHandler = event => {
         const { value } = event.target;
+        dispatch(filterActions.choose(value));
         onChange(value);
     }
 

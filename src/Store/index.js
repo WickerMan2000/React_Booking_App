@@ -12,7 +12,8 @@ const initialCalendarState = {
         checkIn: inititalDate,
         checkOut: inititalDate
     }
-}
+};
+const initialFilterState = { filter: 'Car Park' };
 
 const priceSliderSlice = createSlice({
     name: 'slider',
@@ -63,15 +64,27 @@ const calendarSlice = createSlice({
     }
 });
 
+const filterSlice = createSlice({
+    name: 'filters',
+    initialState: initialFilterState,
+    reducers: {
+        choose: (state, action) => {
+            state.filter = action.payload;
+        }
+    }
+});
+
 const store = configureStore({
     reducer: {
         slider: priceSliderSlice.reducer,
         searcher: searchedTextSlice.reducer,
-        calendar: calendarSlice.reducer
+        calendar: calendarSlice.reducer,
+        filters: filterSlice.reducer
     }
 });
 
 export const priceSliderActions = priceSliderSlice.actions;
 export const searchedTextActions = searchedTextSlice.actions;
 export const calendarActions = calendarSlice.actions;
+export const filterActions = filterSlice.actions;
 export default store;

@@ -5,10 +5,14 @@ import Hotel from './Hotel';
 const HotelList = () => {
     const sliderValue = useSelector(state => state.slider.price);
     const outPutData = useSelector(state => state.searcher.text);
+    const filteredValue = useSelector(state => state.filters.filter);
+
+    const filteredData = outPutData.filter(hotel =>
+        hotel.filters.map(filter => filter.name).includes(filteredValue));
 
     return (
         <ul>
-            {outPutData.map(hotel =>
+            {filteredData.map(hotel =>
                 hotel.price > sliderValue &&
                 (
                     <Hotel
