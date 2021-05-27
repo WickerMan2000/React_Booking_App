@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import InputContext from '../ContextProvider/InputContext';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { calendarActions } from '../../Store/index';
 import Button from '../../UI/Button';
 import styles from './Check.module.css';
 
 const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedOut }) => {
-    const [reset, setReset] = useState(false);
     const [checkInState, setCheckInState] = useState(false);
-    const context = useContext(InputContext);
+    const [reset, setReset] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setReset(false);
@@ -19,17 +20,15 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
         }
         setCheckInState(true);
         if (itIsCheckedIn && !itIsCheckedOut) {
-            context.dispatch({
-                type: 'CHECK_IN_DATE',
+            dispatch(calendarActions.checkIn({
                 inputCheck: value,
                 enable: true
-            })
+            }))
         } else if (!(!itIsCheckedIn && itIsCheckedOut)) {
-            context.dispatch({
-                type: 'CHECK_OUT_DATE',
+            dispatch(calendarActions.checkOut({
                 inputCheck: value,
                 enable: true
-            })
+            }))
         }
     }
 

@@ -1,17 +1,18 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Search from '../HeaderComponents/Search';
 import Check from '../HeaderComponents/Check';
 import PriceSlider from '../HeaderComponents/PriceSlider';
 import Option from '../HeaderComponents/Option';
-import InputContext from '../ContextProvider/InputContext';
 import styles from './Header.module.css';
 import locationStyles from '../HeaderComponents/Location.module.css';
 import roomTypeStyles from '../HeaderComponents/RoomType.module.css';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-    const initalDateContext = useContext(InputContext);
     const [roomTypes, setRoomTypes] = useState([]);
     const [cities, setCities] = useState([]);
+    const enableIt = useSelector(state => state.calendar.enabled);
+    const checkInOutDates = useSelector(state => Object.values(state.calendar.checkInOutDates));
     const fix = true;
 
     const roomDataName = useCallback(async data => {
@@ -42,12 +43,12 @@ const Header = () => {
             <Check
                 itIsCheckedIn={fix}
                 enableCalendar={false}
-                initialDate={initalDateContext.checkInOutDates[0]}
+                initialDate={checkInOutDates[0]}
                 title='Check-In' />
             <Check
                 itIsCheckedOut={!fix}
-                enableCalendar={!initalDateContext.enableIt}
-                initialDate={initalDateContext.checkInOutDates[1]}
+                enableCalendar={!enableIt}
+                initialDate={checkInOutDates[1]}
                 title='Check-Out' />
             <Option
                 text="Rooms"
