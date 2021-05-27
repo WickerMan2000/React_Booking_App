@@ -1,13 +1,23 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { mapRelatedActions } from '../../Store/index';
+import React, { useContext, useEffect } from 'react';
+import InputContext from '../ContextProvider/InputContext';
 import styles from './Hotel.module.css';
 
 const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map }) => {
-    const dispatch = useDispatch();
+    const context = useContext(InputContext);
+
+    useEffect(() => {
+        return () => context.dispatch({
+            type: 'CLEAN_THE_MAP',
+            condition: false
+        });
+    }, [])
 
     const clickIt = () => {
-        dispatch(mapRelatedActions.showingMap(map));
+        context.dispatch({
+            type: 'CLEAN_THE_MAP',
+            condition: true,
+            map: map
+        });
     }
 
     return (

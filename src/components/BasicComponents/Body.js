@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import Map from '../BodyComponents/Map';
 import HotelList from '../BodyComponents//HotelList';
-import SortingOptions from '../BodyComponents/SortingOptions';
+import sortingOptionsStyles from '../BodyComponents/SortingOptions.module.css';
+import Option from '../HeaderComponents/Option';
 import styles from './Body.module.css';
 
 const Body = () => {
@@ -26,12 +27,13 @@ const Body = () => {
         <div>
             <div className={styles.CoHeader}>
                 <Map />
-                <SortingOptions
+                <Option
                     text="Filters"
                     dataType={filters}
                     property={"name"}
                     dataTransformation={sortingOption}
-                    sortingOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
+                    className={sortingOptionsStyles.SortingOptions}
+                    eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
             </div>
             <HotelList />
         </div>

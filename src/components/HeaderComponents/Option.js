@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useHttpRequest from '../../CustomHooks/useHttpRequest';
 import Select from '../../UI/Select';
 
-const Option = ({ dataTransformation, dataType, className, property, eachOptionUrl, text }) => {
+const Option = React.memo(({ dataTransformation, dataType, className, property, eachOptionUrl, text }) => {
     const { error, isLoading, changeOptionHandler } = useHttpRequest();
 
     useEffect(() => {
@@ -26,6 +26,6 @@ const Option = ({ dataTransformation, dataType, className, property, eachOptionU
             </Select>
         </div>
     );
-}
+})
 
 export default Option;

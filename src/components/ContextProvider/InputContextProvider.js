@@ -10,7 +10,9 @@ const initialState = {
     checkInOutDates: {
         checkIn: inititalDate,
         checkOut: inititalDate
-    }
+    },
+    clean: false,
+    map: ''
 }
 
 const reducer = (state, action) => {
@@ -60,6 +62,13 @@ const reducer = (state, action) => {
             }
         }
     }
+    if (action.type === 'CLEAN_THE_MAP') {
+        return {
+            ...state,
+            clean: action.condition,
+           map: action.map
+        }
+    }
     return initialState;
 }
 
@@ -69,6 +78,8 @@ const InputContextProvider = ({ children }) => {
     const inputDateContext = {
         enableIt: inputState.enabled,
         checkInOutDates: Object.values(inputState.checkInOutDates),
+        cleanMap: inputState.clean,
+        getTheMap: inputState.map,
         dispatch: dispatchInputState
     }
 

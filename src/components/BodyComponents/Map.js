@@ -1,9 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useContext } from 'react';
+import InputContext from '../ContextProvider/InputContext';
 import styles from './Map.module.css';
 
 const Map = () => {
-    const mapUrl = useSelector(state => state.map.mapUrl);
+    const { cleanMap, getTheMap } = useContext(InputContext);
 
     return (
         <iframe
@@ -11,7 +11,7 @@ const Map = () => {
             height={70}
             className={styles.Map}
             title="Hotel Location"
-            src={mapUrl}>
+            src={cleanMap && getTheMap}>
         </iframe>
     );
 }
