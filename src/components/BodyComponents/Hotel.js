@@ -1,23 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import InputContext from '../ContextProvider/InputContext';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { mapActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
-const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map }) => {
-    const context = useContext(InputContext);
+const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, id }) => {
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        return () => context.dispatch({
-            type: 'CLEAN_THE_MAP',
-            condition: false
-        });
-    }, [])
+        return () => {
+            dispatch(mapActions.changeCondition({ condition: false, checkId: id }));
+        };
+    }, [dispatch, id])
 
     const clickIt = () => {
-        context.dispatch({
-            type: 'CLEAN_THE_MAP',
-            condition: true,
-            map: map
-        });
+        dispatch(mapActions.changeCondition({ condition: true, map: map, id: id }));
     }
 
     return (

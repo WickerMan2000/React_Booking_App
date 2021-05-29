@@ -9,7 +9,7 @@ import roomTypeStyles from '../HeaderComponents/RoomType.module.css';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
-    const [roomTypes, setRoomTypes] = useState([]);
+    const [roomTypes, setRoomTypes] = useState([{ roomtype: 'All' }]);
     const [cities, setCities] = useState([]);
     const enableIt = useSelector(state => state.calendar.enabled);
     const checkInOutDates = useSelector(state => Object.values(state.calendar.checkInOutDates));
@@ -21,7 +21,7 @@ const Header = () => {
                 roomtype: roomData.name
             };
         })
-        setRoomTypes(result);
+        setRoomTypes(roomTypes.concat(result));
     }, [])
 
     const cityDataLocation = useCallback(async data => {
@@ -64,6 +64,7 @@ const Header = () => {
                 dataType={cities}
                 className={locationStyles.Location}
                 property={"location"}
+                disabled={true}
                 eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
         </div>
     );

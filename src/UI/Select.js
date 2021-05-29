@@ -2,12 +2,20 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { filterActions } from '../Store/index';
 
-const Select = ({ onChange, isLoading, error, data, property, text }) => {
+const Select = ({ onChange, isLoading, error, data, property, text, disabled }) => {
     const dispatch = useDispatch();
 
     const dataHandler = event => {
         const { value } = event.target;
-        dispatch(filterActions.choose(value));
+        if (text === 'Filters') {
+            dispatch(filterActions.chooseFilter(value));
+        }
+        if (text === 'Cities') {
+            dispatch(filterActions.chooseCity(value));
+        }
+        if (text === 'Rooms') {
+            dispatch(filterActions.chooseRoomType(value));
+        }
         onChange(value);
     }
 
@@ -24,7 +32,7 @@ const Select = ({ onChange, isLoading, error, data, property, text }) => {
                 'margin-top': '0.1px',
                 'font-size': 'medium'
             }}>{text}:</p>
-            <select onChange={dataHandler} style={{
+            <select disabled={disabled} onChange={dataHandler} style={{
                 'grid-column': '4/10',
                 'grid-row': '1/6',
                 'font-size': 'large'

@@ -1,9 +1,19 @@
-import React, { useContext } from 'react';
-import InputContext from '../ContextProvider/InputContext';
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './Map.module.css';
 
 const Map = () => {
-    const { cleanMap, getTheMap } = useContext(InputContext);
+    const cleanMap = useSelector(state => state.map.condition);
+    const getTheMap = useSelector(state => state.map.map);
+    const identity = useSelector(state => state.map.identity);
+    const checkIdentity = useSelector(state => state.map.checkIdentity);
+    const identityRef = useRef(identity);
+    const mapRef = useRef(getTheMap);
+
+    useEffect(() => {
+        identityRef.current = identity;
+        mapRef.current = getTheMap;
+    }, [identity, getTheMap])
 
     return (
         <iframe
@@ -11,7 +21,7 @@ const Map = () => {
             height={70}
             className={styles.Map}
             title="Hotel Location"
-            src={cleanMap && getTheMap}>
+            src={checkIdentity !== identityRef.current ? cleanMap && mapRef.current : getTheMap}>
         </iframe>
     );
 }

@@ -13,7 +13,8 @@ const initialCalendarState = {
         checkOut: inititalDate
     }
 };
-const initialFilterState = { filter: 'Car Park' };
+const initialFilterState = { filter: 'All', city: 'Paris', roomtype: 'All' };
+const initialDealWithMapState = { condition: false, map: '', identity: 0, checkIdentity: 0 };
 
 const priceSliderSlice = createSlice({
     name: 'slider',
@@ -68,8 +69,28 @@ const filterSlice = createSlice({
     name: 'filters',
     initialState: initialFilterState,
     reducers: {
-        choose: (state, action) => {
+        chooseFilter: (state, action) => {
             state.filter = action.payload;
+        },
+        chooseCity: (state, action) => {
+            state.city = action.payload;
+        },
+        chooseRoomType: (state, action) => {
+            state.roomtype = action.payload;
+        },
+    }
+});
+
+const dealWithMapSlice = createSlice({
+    name: 'map',
+    initialState: initialDealWithMapState,
+    reducers: {
+        changeCondition: (state, action) => {
+            state.condition = action.payload.condition;
+            state.map = action.payload.map;
+            state.identity = action.payload.id;
+            state.checkIdentity = action.payload.checkId;
+            
         }
     }
 });
@@ -79,7 +100,8 @@ const store = configureStore({
         slider: priceSliderSlice.reducer,
         searcher: searchedTextSlice.reducer,
         calendar: calendarSlice.reducer,
-        filters: filterSlice.reducer
+        filters: filterSlice.reducer,
+        map: dealWithMapSlice.reducer
     }
 });
 
@@ -87,4 +109,5 @@ export const priceSliderActions = priceSliderSlice.actions;
 export const searchedTextActions = searchedTextSlice.actions;
 export const calendarActions = calendarSlice.actions;
 export const filterActions = filterSlice.actions;
+export const mapActions = dealWithMapSlice.actions;
 export default store;

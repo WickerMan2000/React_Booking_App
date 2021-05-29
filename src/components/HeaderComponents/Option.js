@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useHttpRequest from '../../CustomHooks/useHttpRequest';
 import Select from '../../UI/Select';
 
-const Option = React.memo(({ dataTransformation, dataType, className, property, eachOptionUrl, text }) => {
+const Option = React.memo(({ dataTransformation, dataType, className, property, eachOptionUrl, text, disabled }) => {
     const { error, isLoading, changeOptionHandler } = useHttpRequest();
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const Option = React.memo(({ dataTransformation, dataType, className, property, 
                 data={dataType}
                 property={property}
                 text={text}
+                disabled={disabled}
                 onChange={changeOptionHandler.bind(null, new AbortController())}
             >
             </Select>

@@ -6,7 +6,7 @@ import Option from '../HeaderComponents/Option';
 import styles from './Body.module.css';
 
 const Body = () => {
-    const [filters, setFilters] = useState([]);
+    const [filters, setFilters] = useState([{ name: 'All' }]);
 
     const sortingOption = useCallback(async data => {
         const newObject = {}
@@ -20,7 +20,7 @@ const Body = () => {
         const filteredArray = result.filter(object =>
             !newObject[object.name] && (newObject[object.name] = true)
         );
-        setFilters(...filteredArray);
+        setFilters(filters.concat(...filteredArray));
     }, [])
 
     return (

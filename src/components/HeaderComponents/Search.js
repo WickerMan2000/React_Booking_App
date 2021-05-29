@@ -25,7 +25,8 @@ const Search = () => {
                 price: data[key].price,
                 rating: data[key].rating,
                 ratings: data[key].ratings,
-                thumbnail: data[key].thumbnail
+                thumbnail: data[key].thumbnail,
+                roomtype: data[key].roomtype
             })
         }
         setResult(result);
