@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { mapActions } from '../../Store/index';
 import Hotel from './Hotel';
 
-const HotelList = () => {
+const HotelList = React.memo(() => {
     const sliderValue = useSelector(state => state.slider.price);
     const filteredValue = useSelector(state => state.filters.filter);
     const roomTypeValue = useSelector(state => state.filters.roomtype);
@@ -24,7 +24,7 @@ const HotelList = () => {
         return () => {
             dispatch(mapActions.changeCondition({ condition: false }));
         };
-    }, [outPutData, dispatch])
+    }, [combinedData, dispatch])
 
     return (
         <ul>
@@ -44,6 +44,6 @@ const HotelList = () => {
                 ))}
         </ul>
     );
-}
+})
 
 export default HotelList;

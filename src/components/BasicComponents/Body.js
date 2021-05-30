@@ -1,12 +1,30 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
 import Map from '../BodyComponents/Map';
 import HotelList from '../BodyComponents//HotelList';
-import sortingOptionsStyles from '../BodyComponents/SortingOptions.module.css';
 import Option from '../HeaderComponents/Option';
+import SummaryModal from '../../UI/SummaryModal';
 import styles from './Body.module.css';
+import sortingOptionsStyles from '../BodyComponents/SortingOptions.module.css';
+import backDropStyles from '../../UI/BackDrop.module.css';
+
+const BackDrop = ({ show, onClick }) => {
+    return (
+        <div className={show && backDropStyles.backdrop} onClick={onClick}></div>
+    );
+}
 
 const Body = () => {
     const [filters, setFilters] = useState([{ name: 'All' }]);
+    const getSummary = useSelector(state => state.summary.show);
+    const [clicked, setClicked] = useState(false);
+
+    useEffect(() => {
+        setClicked(getSummary);
+    }, [getSummary])
+
+    console.log(clicked)
 
     const sortingOption = useCallback(async data => {
         const newObject = {}
@@ -36,6 +54,10 @@ const Body = () => {
                     eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
             </div>
             <HotelList />
+            {ReactDOM.createPortal(<BackDrop show={clicked}
+                onClick={() => { setClicked(prevState => !prevState) }} />,
+                document.getElementById('backdrop-root'))}
+            {clicked && <SummaryModal onClick={() => { setClicked(prevState => !prevState) }} />}
         </div>
     );
 }

@@ -15,6 +15,7 @@ const initialCalendarState = {
 };
 const initialFilterState = { filter: 'All', city: 'Paris', roomtype: 'All' };
 const initialDealWithMapState = { condition: false, map: '', identity: 0, checkIdentity: 0 };
+const inititialSummaryView = { show: false }
 
 const priceSliderSlice = createSlice({
     name: 'slider',
@@ -90,10 +91,20 @@ const dealWithMapSlice = createSlice({
             state.map = action.payload.map;
             state.identity = action.payload.id;
             state.checkIdentity = action.payload.checkId;
-            
+
         }
     }
 });
+
+const summarySlice = createSlice({
+    name: 'summary',
+    initialState: inititialSummaryView,
+    reducers: {
+        setSummary: state => {
+            state.show = true;
+        }
+    }
+})
 
 const store = configureStore({
     reducer: {
@@ -101,7 +112,8 @@ const store = configureStore({
         searcher: searchedTextSlice.reducer,
         calendar: calendarSlice.reducer,
         filters: filterSlice.reducer,
-        map: dealWithMapSlice.reducer
+        map: dealWithMapSlice.reducer,
+        summary: summarySlice.reducer
     }
 });
 
@@ -110,4 +122,5 @@ export const searchedTextActions = searchedTextSlice.actions;
 export const calendarActions = calendarSlice.actions;
 export const filterActions = filterSlice.actions;
 export const mapActions = dealWithMapSlice.actions;
+export const summaryActions = summarySlice.actions;
 export default store;

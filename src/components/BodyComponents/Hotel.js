@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { mapActions } from '../../Store/index';
+import { summaryActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
 const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, id }) => {
@@ -8,12 +9,16 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
 
     useEffect(() => {
         return () => {
-            dispatch(mapActions.changeCondition({ condition: false, checkId: id }));
+            dispatch(mapActions.changeCondition({ condition: false, id: id }));
         };
     }, [dispatch, id])
 
     const clickIt = () => {
         dispatch(mapActions.changeCondition({ condition: true, map: map, id: id }));
+    }
+
+    const getSummary = () => {
+        dispatch(summaryActions.setSummary());
     }
 
     return (
@@ -28,6 +33,7 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
                 ))}
             </ul>
             <img src={thumbnail} alt="Just a Pic" />
+            <button onClick={getSummary}>View Deal</button>
         </div>
     );
 }

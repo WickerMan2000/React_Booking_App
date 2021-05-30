@@ -17,7 +17,7 @@
 img {
     grid-column: 1/4;
     grid-row: 1/6;
-    border: 0.5rem solid;
+    border: 0.3rem solid;
     width: 500px;
     height: 400px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -58,6 +58,29 @@ li {
     margin: 2rem;
     color: rgba(170, 71, 71, 0.8);
 }
+
+img + button {
+    grid-column: 9/10;
+    grid-row: 9/10;
+    font-size: large;
+    font-weight: bolder;
+    color: blanchedalmond;
+    background: rgba(57, 156, 102, 0.6);
+    border: 2px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+img + button:focus {
+    outline: none;
+  }
+
+img + button:hover,
+img + button:active {
+    background: blanchedalmond;
+    color: rgba(57, 156, 102, 0.6);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+  }
 
 @keyframes hotel-appears {
     from {
