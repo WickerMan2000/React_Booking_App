@@ -133,7 +133,7 @@ const hintSlice = createSlice({
             state.hint = action.payload;
         }
     }
-})
+});
 
 const store = configureStore({
     reducer: {

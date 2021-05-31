@@ -20,8 +20,8 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
         if (new Date(value) < new Date()) {
             return;
         }
-        setCheckInState(true);
         if (itIsCheckedIn && !itIsCheckedOut) {
+            setCheckInState(true);
             dispatch(hintActions.showHint(false));
             dispatch(calendarActions.checkIn({
                 inputCheck: value,
@@ -41,6 +41,7 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
             <Button
                 onClick={() => {
                     setReset(true);
+                    setCheckInState(false);
                     dispatch(calendarActions.reset({ ready: false }));
                 }}
                 title="Reset">

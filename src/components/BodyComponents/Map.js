@@ -14,10 +14,6 @@ const Map = React.memo(() => {
         mapRef.current = getTheMap;
     }, [identity, getTheMap])
 
-    // console.log(identity !== identityRef.current);
-    console.log(identity);
-    console.log(identityRef.current);
-
     return (
         <iframe
             width={510}
