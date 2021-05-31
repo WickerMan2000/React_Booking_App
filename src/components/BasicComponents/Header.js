@@ -9,8 +9,8 @@ import roomTypeStyles from '../HeaderComponents/RoomType.module.css';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
-    const [roomTypes, setRoomTypes] = useState([{ roomtype: 'All' }]);
     const [cities, setCities] = useState([]);
+    const [roomTypes, setRoomTypes] = useState([{ roomtype: 'All' }]);
     const enableIt = useSelector(state => state.calendar.enabled);
     const checkInOutDates = useSelector(state => Object.values(state.calendar.checkInOutDates));
     const fix = true;

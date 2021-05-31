@@ -24,6 +24,10 @@
     font-size: large;
 }
 
+.Attention {
+    border: 2px solid red;
+}
+
 Button {
     grid-row: 1/10;
     grid-column: 9/11;

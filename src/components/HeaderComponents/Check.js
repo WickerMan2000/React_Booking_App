@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { calendarActions } from '../../Store/index';
 import Button from '../../UI/Button';
 import styles from './Check.module.css';
 
 const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedOut }) => {
+    const readyToContinue = useSelector(state => state.calendar.readyForDeal);
     const [checkInState, setCheckInState] = useState(false);
     const [reset, setReset] = useState(false);
     const dispatch = useDispatch();
@@ -35,7 +36,10 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
     return (
         <div className={styles.Check}>
             <Button
-                onClick={() => { setReset(true) }}
+                onClick={() => {
+                    setReset(true);
+                    dispatch(calendarActions.reset({ ready: false }));
+                }}
                 title="Reset">
             </Button>
             <p className={styles.Title}>{title}:</p>
@@ -43,10 +47,10 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
                 type='date'
                 min={new Date()}
                 max='2022-12-31'
-                className={styles.Input}
                 onChange={dateChangeHandler}
                 value={reset ? new Date() : initialDate}
                 disabled={!checkInState && enableCalendar}
+                className={!readyToContinue ? [styles.Input, styles.Attention].join(" ") : styles.Input}
             />
         </div>
     );

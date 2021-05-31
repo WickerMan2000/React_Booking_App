@@ -1,21 +1,23 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const inititalDate = new Date();
+const initialDate = new Date();
+const defaultDate = initialDate.getFullYear() + "-" + (initialDate.getMonth() + 1) + "-" + initialDate.getDate();
 
 const initialPriceSliderState = { price: 0 };
 const initialSearchedTextState = { text: [] };
 const initialCalendarState = {
     enabled: false,
-    checkInDates: inititalDate,
-    checkOutDates: inititalDate,
+    checkInDates: defaultDate,
+    checkOutDates: defaultDate,
     checkInOutDates: {
-        checkIn: inititalDate,
-        checkOut: inititalDate
-    }
+        checkIn: defaultDate,
+        checkOut: defaultDate
+    },
+    readyForDeal: false
 };
 const initialFilterState = { filter: 'All', city: 'Paris', roomtype: 'All' };
 const initialDealWithMapState = { condition: false, map: '', identity: 0, checkIdentity: 0 };
-const inititialSummaryView = { show: false }
+const inititialSummaryViewState = { show: false }
 
 const priceSliderSlice = createSlice({
     name: 'slider',
@@ -46,11 +48,16 @@ const calendarSlice = createSlice({
                 state.enabled = action.payload.enable;
                 state.checkOutDates = action.payload.inputCheck;
                 state.checkInDates = state.checkOutDates;
-                state.checkInOutDates.checkOut = action.payload.inputCheck
+                state.checkInOutDates.checkOut = action.payload.inputCheck;
             }
             state.enabled = action.payload.enable;
             state.checkInDates = action.payload.inputCheck;
-            state.checkInOutDates.checkIn = action.payload.inputCheck
+            state.checkInOutDates.checkIn = action.payload.inputCheck;
+            if (state.checkInOutDates.checkIn !== defaultDate && state.checkInOutDates.checkOut !== defaultDate) {
+                state.readyForDeal = true;
+            } else {
+                state.readyForDeal = false;
+            }
         },
         checkOut: (state, action) => {
             if (action.payload.inputCheck < state.checkInDates) {
@@ -62,6 +69,19 @@ const calendarSlice = createSlice({
             state.enabled = action.payload.enable;
             state.checkOutDates = action.payload.inputCheck;
             state.checkInOutDates.checkOut = action.payload.inputCheck
+            if (state.checkInOutDates.checkIn !== defaultDate && state.checkInOutDates.checkOut !== defaultDate) {
+                state.readyForDeal = true;
+            } else {
+                state.readyForDeal = false;
+            }
+        },
+        reset: (state, action) => {
+            state.enabled = false;
+            state.checkInDates = defaultDate;
+            state.checkOutDates = defaultDate;
+            state.checkInOutDates.checkIn = defaultDate;
+            state.checkInOutDates.checkOut = defaultDate;
+            state.readyForDeal = action.payload.ready;
         }
     }
 });
@@ -98,13 +118,13 @@ const dealWithMapSlice = createSlice({
 
 const summarySlice = createSlice({
     name: 'summary',
-    initialState: inititialSummaryView,
+    initialState: inititialSummaryViewState,
     reducers: {
-        setSummary: state => {
-            state.show = true;
+        summary: state => {
+            state.show = !state.show;
         }
     }
-})
+});
 
 const store = configureStore({
     reducer: {
@@ -113,7 +133,7 @@ const store = configureStore({
         calendar: calendarSlice.reducer,
         filters: filterSlice.reducer,
         map: dealWithMapSlice.reducer,
-        summary: summarySlice.reducer
+        summary: summarySlice.reducer,
     }
 });
 

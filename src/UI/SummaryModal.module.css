@@ -1,27 +1,55 @@
 .summaryModal {
-    position: absolute;
+    position: fixed;
     top: 2rem;
     left: 16rem;
     border-radius: 12px;
     border: 5px solid;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
     width: 45%;
     margin-top: 5rem;
     margin-left: 11rem;
-    animation: summary-appears 300ms ease-out forwards;
-    background: rgb(248, 248, 248);
     z-index: 200;
     height: 500px;
+    display: grid;
+    grid-row: repeat(10, 10%);
+    grid-column: repeat(10, 10%);
+    background: rgb(248, 248, 248);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    animation: summary-appears 300ms ease-out forwards;
+}
+
+.SummaryButton {
+  width: 90%;
+  height: 90%;
+  grid-row: 9/10;
+  grid-column: 9/10;
+  font-size: large;
+  font-weight: bolder;
+  color: blanchedalmond;
+  background: rgba(63, 126, 128, 0.6);
+  border: 2px solid black;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.SummaryButton:focus {
+  outline: none;
+}
+
+.SummaryButton:hover,
+.SummaryButton:active {
+  background: blanchedalmond;
+  color: rgba(63, 126, 128, 0.6);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
 }
 
 @keyframes summary-appears {
     from {
       opacity: 0;
-      transform: translateY(-2rem);
+      transform: translateX(-15rem);
     }
   
     to {
       opacity: 1;
-      transform: translateY(1rem);
+      transform: translateX(1rem);
     }
   }

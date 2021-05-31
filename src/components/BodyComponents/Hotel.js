@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { mapActions } from '../../Store/index';
 import { summaryActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
 const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, id }) => {
+    const readyToContinue = useSelector(state => state.calendar.readyForDeal);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -18,7 +19,7 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
     }
 
     const getSummary = () => {
-        dispatch(summaryActions.setSummary());
+        dispatch(summaryActions.summary());
     }
 
     return (
@@ -33,7 +34,7 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
                 ))}
             </ul>
             <img src={thumbnail} alt="Just a Pic" />
-            <button onClick={getSummary}>View Deal</button>
+            <button onClick={readyToContinue && getSummary}>View Deal</button>
         </div>
     );
 }

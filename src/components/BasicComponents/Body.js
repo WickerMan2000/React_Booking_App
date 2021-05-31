@@ -1,30 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import ReactDOM from 'react-dom';
+import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { summaryActions } from '../../Store/index';
 import Map from '../BodyComponents/Map';
 import HotelList from '../BodyComponents//HotelList';
 import Option from '../HeaderComponents/Option';
 import SummaryModal from '../../UI/SummaryModal';
+import BackDrop from '../../UI/BackDrop';
 import styles from './Body.module.css';
 import sortingOptionsStyles from '../BodyComponents/SortingOptions.module.css';
-import backDropStyles from '../../UI/BackDrop.module.css';
-
-const BackDrop = ({ show, onClick }) => {
-    return (
-        <div className={show && backDropStyles.backdrop} onClick={onClick}></div>
-    );
-}
 
 const Body = () => {
-    const [filters, setFilters] = useState([{ name: 'All' }]);
+    const readyToContinue = useSelector(state => state.calendar.readyForDeal);
     const getSummary = useSelector(state => state.summary.show);
-    const [clicked, setClicked] = useState(false);
-
-    useEffect(() => {
-        setClicked(getSummary);
-    }, [getSummary])
-
-    console.log(clicked)
+    const [filters, setFilters] = useState([{ name: 'All' }]);
+    const dispatch = useDispatch();
 
     const sortingOption = useCallback(async data => {
         const newObject = {}
@@ -54,10 +43,8 @@ const Body = () => {
                     eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
             </div>
             <HotelList />
-            {ReactDOM.createPortal(<BackDrop show={clicked}
-                onClick={() => { setClicked(prevState => !prevState) }} />,
-                document.getElementById('backdrop-root'))}
-            {clicked && <SummaryModal onClick={() => { setClicked(prevState => !prevState) }} />}
+            {readyToContinue && <BackDrop show={getSummary} onClick={() => dispatch(summaryActions.summary())} />}
+            {readyToContinue && getSummary && <SummaryModal onClick={() => dispatch(summaryActions.summary())} />}
         </div>
     );
 }

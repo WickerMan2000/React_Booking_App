@@ -1,9 +1,16 @@
 import React from 'react';
-import modal from './SummaryModal.module.css';
+import { useSelector } from 'react-redux';
+import styles from './SummaryModal.module.css';
 
-const SummaryModal = () => { 
+const SummaryModal = ({ onClick }) => {
+    const checkInOutDates = useSelector(state => Object.values(state.calendar.checkInOutDates));
+
     return (
-        <div className={modal.summaryModal}></div>
+        <div className={styles.summaryModal}>
+            <div>{checkInOutDates[0]}</div>
+            <div>{checkInOutDates[1]}</div>
+            <button className={styles.SummaryButton} onClick={onClick}>Cancel</button>
+        </div>
     );
 }
 
