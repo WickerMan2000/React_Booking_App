@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { calendarActions } from '../../Store/index';
+import { calendarActions, hintActions } from '../../Store/index';
 import Button from '../../UI/Button';
 import styles from './Check.module.css';
 
 const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, itIsCheckedOut }) => {
     const readyToContinue = useSelector(state => state.calendar.readyForDeal);
+    const hintIt = useSelector(state => state.hint.hint);
     const [checkInState, setCheckInState] = useState(false);
     const [reset, setReset] = useState(false);
     const dispatch = useDispatch();
@@ -21,15 +22,17 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
         }
         setCheckInState(true);
         if (itIsCheckedIn && !itIsCheckedOut) {
+            dispatch(hintActions.showHint(false));
             dispatch(calendarActions.checkIn({
                 inputCheck: value,
                 enable: true
-            }))
+            }));
         } else if (!(!itIsCheckedIn && itIsCheckedOut)) {
+            dispatch(hintActions.showHint(false));
             dispatch(calendarActions.checkOut({
                 inputCheck: value,
                 enable: true
-            }))
+            }));
         }
     }
 
@@ -50,7 +53,7 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
                 onChange={dateChangeHandler}
                 value={reset ? new Date() : initialDate}
                 disabled={!checkInState && enableCalendar}
-                className={!readyToContinue ? [styles.Input, styles.Attention].join(" ") : styles.Input}
+                className={!readyToContinue && hintIt ? [styles.Input, styles.Attention].join(" ") : styles.Input}
             />
         </div>
     );

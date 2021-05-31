@@ -6,7 +6,6 @@ const Map = React.memo(() => {
     const cleanMap = useSelector(state => state.map.condition);
     const getTheMap = useSelector(state => state.map.map);
     const identity = useSelector(state => state.map.identity);
-    const checkIdentity = useSelector(state => state.map.checkIdentity);
     const identityRef = useRef(identity);
     const mapRef = useRef(getTheMap);
 

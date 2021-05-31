@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { mapActions } from '../../Store/index';
-import { summaryActions } from '../../Store/index';
+import { mapActions, summaryActions, hintActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
 const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, id }) => {
@@ -34,7 +33,7 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
                 ))}
             </ul>
             <img src={thumbnail} alt="Just a Pic" />
-            <button onClick={readyToContinue && getSummary}>View Deal</button>
+            <button onClick={readyToContinue ? getSummary : () => dispatch(hintActions.showHint(true))}>View Deal</button>
         </div>
     );
 }
