@@ -25,7 +25,8 @@
 }
 
 .Attention {
-    border: 2px solid red;
+    border: 1px solid rgba(250, 23, 23, 0.6);
+    background: rgba(250, 23, 23, 0.3);
 }
 
 Button {

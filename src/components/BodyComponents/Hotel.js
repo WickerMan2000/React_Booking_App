@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { mapActions, summaryActions, hintActions } from '../../Store/index';
+import { mapActions, summaryActions, hintActions, summaryDataActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
 const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, id }) => {
@@ -19,6 +19,11 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
 
     const getSummary = () => {
         dispatch(summaryActions.summary());
+        dispatch(summaryDataActions.showSummaryData({ image: thumbnail, hotelName: hotelName, price: price, city: city }));
+    }
+
+    const getHint = () => {
+        dispatch(hintActions.showHint(true));
     }
 
     return (
@@ -33,7 +38,7 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
                 ))}
             </ul>
             <img src={thumbnail} alt="Just a Pic" />
-            <button onClick={readyToContinue ? getSummary : () => dispatch(hintActions.showHint(true))}>View Deal</button>
+            <button onClick={readyToContinue ? getSummary : getHint}>View Deal</button>
         </div>
     );
 }

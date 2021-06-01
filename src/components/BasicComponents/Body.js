@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { summaryActions } from '../../Store/index';
 import Map from '../BodyComponents/Map';
-import HotelList from '../BodyComponents//HotelList';
 import Option from '../HeaderComponents/Option';
 import SummaryModal from '../../UI/SummaryModal';
 import BackDrop from '../../UI/BackDrop';
@@ -31,8 +30,7 @@ const Body = () => {
     }, [])
 
     return (
-        <div>
-            <div className={styles.CoHeader}>
+        <div className={styles.CoHeader}>
                 <Map />
                 <Option
                     text="Filters"
@@ -41,8 +39,6 @@ const Body = () => {
                     dataTransformation={sortingOption}
                     className={sortingOptionsStyles.SortingOptions}
                     eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
-            </div>
-            <HotelList />
             {readyToContinue && <BackDrop show={getSummary} onClick={() => dispatch(summaryActions.summary())} />}
             {readyToContinue && getSummary && <SummaryModal onClick={() => dispatch(summaryActions.summary())} />}
         </div>

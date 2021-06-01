@@ -1,5 +1,8 @@
 .Header {
     display: grid;
+    position: sticky; 
+    top: 0px;
+    z-index: 1000;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 33%);
     background: rgb(56, 175, 175);
