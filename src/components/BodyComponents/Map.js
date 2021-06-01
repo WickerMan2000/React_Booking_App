@@ -9,6 +9,7 @@ const Map = React.memo(() => {
     const getTheMap = useSelector(state => state.map.map);
     const identityRef = useRef(identity);
     const mapRef = useRef(getTheMap);
+    const presupposition = isUnmounted && identity && identityRef.current;
 
     useEffect(() => {
         identityRef.current = identity;
@@ -21,8 +22,8 @@ const Map = React.memo(() => {
             height={70}
             className={styles.Map}
             title="Hotel Location"
-            src={isUnmounted && identity && identityRef.current && identity === identityRef.current ? cleanMap && getTheMap :
-                isUnmounted && identity && identityRef.current && identity !== identityRef.current ? !cleanMap && mapRef.current :
+            src={presupposition && identity === identityRef.current ? cleanMap && getTheMap :
+                presupposition && identity !== identityRef.current ? !cleanMap && mapRef.current :
                     getTheMap}>
         </iframe>
     );
