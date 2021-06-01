@@ -31,14 +31,14 @@ const Body = () => {
 
     return (
         <div className={styles.CoHeader}>
-                <Map />
-                <Option
-                    text="Filters"
-                    dataType={filters}
-                    property={"name"}
-                    dataTransformation={sortingOption}
-                    className={sortingOptionsStyles.SortingOptions}
-                    eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
+            <Map />
+            <Option
+                text="Filters"
+                dataType={filters}
+                property={"name"}
+                dataTransformation={sortingOption}
+                className={sortingOptionsStyles.SortingOptions}
+                eachOptionUrl={'https://mybooking-28176-default-rtdb.firebaseio.com/1.json'} />
             {readyToContinue && <BackDrop show={getSummary} onClick={() => dispatch(summaryActions.summary())} />}
             {readyToContinue && getSummary && <SummaryModal onClick={() => dispatch(summaryActions.summary())} />}
         </div>

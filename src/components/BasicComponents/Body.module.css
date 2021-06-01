@@ -1,9 +1,10 @@
 .CoHeader {
     display: grid;
     position: sticky; 
-    top: 243px;
+    top: 240px;
     z-index: 1000;
     grid-template-columns: repeat(3, 33%);
     background: rgb(56, 175, 175);
     height: 90px;
+    border-top: 3px solid rgb(58, 58, 58);
 }

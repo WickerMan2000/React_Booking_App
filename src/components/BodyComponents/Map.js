@@ -4,8 +4,9 @@ import styles from './Map.module.css';
 
 const Map = React.memo(() => {
     const cleanMap = useSelector(state => state.map.condition);
-    const getTheMap = useSelector(state => state.map.map);
     const identity = useSelector(state => state.map.identity);
+    const isUnmounted = useSelector(state => state.map.isUnmounted);
+    const getTheMap = useSelector(state => state.map.map);
     const identityRef = useRef(identity);
     const mapRef = useRef(getTheMap);
 
@@ -20,7 +21,9 @@ const Map = React.memo(() => {
             height={70}
             className={styles.Map}
             title="Hotel Location"
-            src={cleanMap && getTheMap}>
+            src={isUnmounted && identity && identityRef.current && identity === identityRef.current ? cleanMap && getTheMap :
+                isUnmounted && identity && identityRef.current && identity !== identityRef.current ? !cleanMap && mapRef.current :
+                    getTheMap}>
         </iframe>
     );
 })

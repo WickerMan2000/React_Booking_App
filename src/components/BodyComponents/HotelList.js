@@ -24,7 +24,7 @@ const HotelList = React.memo(() => {
         return () => {
             dispatch(mapActions.changeCondition({ condition: false }));
         };
-    }, [combinedData, dispatch])
+    }, [outPutData, dispatch])
 
     return (
         <ul>
@@ -32,9 +32,10 @@ const HotelList = React.memo(() => {
                 hotel.price > sliderValue &&
                 (
                     <Hotel
-                        id={index}
+                        id={hotel.key}
+                        key={hotel.key}
                         city={hotel.city}
-                        guestrating={hotel.guestrating}
+                        guestRating={hotel.guestrating}
                         hotelName={hotel.hotelName}
                         price={hotel.price}
                         thumbnail={hotel.thumbnail}

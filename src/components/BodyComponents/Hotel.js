@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { mapActions, summaryActions, hintActions, summaryDataActions } from '../../Store/index';
+import { hintActions, mapActions, summaryActions, summaryDataActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
-const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, id }) => {
+const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, id }) => {
     const readyToContinue = useSelector(state => state.calendar.readyForDeal);
     const dispatch = useDispatch();
 
     useEffect(() => {
         return () => {
-            dispatch(mapActions.changeCondition({ condition: false, id: id }));
+            dispatch(mapActions.changeCondition({ condition: false, id: id, unmount: true }));
         };
     }, [dispatch, id])
 
     const clickIt = () => {
-        dispatch(mapActions.changeCondition({ condition: true, map: map, id: id }));
+        dispatch(mapActions.changeCondition({ condition: true, map: map, id: id, unmount: false }));
     }
 
     const getSummary = () => {
@@ -29,7 +29,7 @@ const Hotel = ({ thumbnail, city, guestrating, hotelName, price, filters, map, i
     return (
         <div className={styles.Hotel} onClick={clickIt}>
             <h1>{city}</h1>
-            <h2>{guestrating} stars</h2>
+            <h2>{guestRating} stars</h2>
             <h3>{hotelName}</h3>
             <h4>${price}</h4>
             <ul>
