@@ -33,7 +33,7 @@ const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, i
     }
 
     return (
-        <div className={styles.Hotel} onClick={clickIt}>
+        <div className={isClicked ? [styles.Hotel, styles.Focus].join(" ") : styles.Hotel}>
             <h1>{city}</h1>
             <h2>{guestRating} stars</h2>
             <h3>{hotelName}</h3>
@@ -45,6 +45,7 @@ const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, i
             </ul>
             <img src={thumbnail} alt="Just a Pic" />
             <button onClick={readyToContinue ? getSummary : getHint}>View Deal</button>
+            <button onClick={clickIt}>View Map</button>
         </div>
     );
 }

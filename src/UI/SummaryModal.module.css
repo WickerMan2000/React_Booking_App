@@ -74,9 +74,9 @@
 
 .SummaryButton {
   width: 95%;
-  height: 95%;
-  grid-row: 9/10;
-  grid-column: 9/10;
+  height: 65%;
+  grid-row: 7/8;
+  grid-column: 7/8;
   font-size: large;
   font-weight: bolder;
   color: blanchedalmond;

@@ -1,9 +1,8 @@
 .Hotel {
     display: grid;
-    height: auto;
+    height: 400px;
     margin: 0.6rem;
     padding: 1rem;
-    cursor: pointer;
     list-style: none;
     text-align: center;
     border-radius: 12px;
@@ -14,12 +13,16 @@
     animation: hotel-appears 800ms ease-out forwards;
 }
 
+.Focus {
+  border: 0.7rem solid rgba(56, 141, 175, 0.7)
+}
+
 img {
     grid-column: 1/4;
     grid-row: 1/6;
     border: 0.3rem solid;
-    width: 500px;
-    height: 400px;
+    width: 100%;
+    height: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -49,19 +52,19 @@ h4 {
 
 ul {
     grid-column: 8/10;
-    grid-row: 2/7;
-    font-size: xx-large;
+    grid-row: 1/6;
+    font-size: x-large;
     list-style: none;
 }
 
 li {
-    margin: 2rem;
+    margin: 1rem;
     color: rgba(170, 71, 71, 0.8);
 }
 
 img + button {
     grid-column: 9/10;
-    grid-row: 9/10;
+    grid-row: 8/10;
     font-size: large;
     font-weight: bolder;
     color: blanchedalmond;
@@ -69,6 +72,9 @@ img + button {
     border: 2px solid black;
     border-radius: 16px;
     cursor: pointer;
+    margin: 3px;
+    margin-top: 25px;
+    height: 80%;
 }
 
 img + button:focus {
@@ -79,6 +85,33 @@ img + button:hover,
 img + button:active {
     background: blanchedalmond;
     color: rgb(56, 175, 175);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+  }
+ 
+button + button {
+    grid-column: 8/9;
+    grid-row: 8/10;
+    margin: 5px;
+    font-size: large;
+    font-weight: bolder;
+    color: blanchedalmond;
+    background: rgb(56, 141, 175);
+    border: 2px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+    margin: 3px;
+    margin-top: 25px;
+    height: 80%;
+}  
+
+button + button:focus {
+    outline: none;
+  }
+
+button + button:hover,
+button + button:active {
+    background: blanchedalmond;
+    color: rgb(56, 141, 175);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
   }
 
