@@ -16,10 +16,10 @@ const initialCalendarState = {
     readyForDeal: false
 };
 const initialFilterState = { filter: 'All', city: 'Paris', roomtype: 'All' };
-const initialDealWithMapState = { condition: false, map: '', identity: 0, isUnmounted: false };
+const initialDealWithMapState = { condition: false, map: '', identity: 0, isUnmounted: false, flag: false };
 const initialSummaryDataState = { image: '', hotelName: '', price: 0, city: '' };
 const inititialSummaryViewState = { show: false };
-const hintState = { hint: false };
+const initialHintState = { hint: false };
 
 const priceSliderSlice = createSlice({
     name: 'slider',
@@ -113,6 +113,7 @@ const dealWithMapSlice = createSlice({
             state.map = action.payload.map;
             state.identity = action.payload.id;
             state.isUnmounted = action.payload.unmount;
+            state.flag = !state.flag;
         }
     }
 });
@@ -129,7 +130,7 @@ const summarySlice = createSlice({
 
 const hintSlice = createSlice({
     name: 'hint',
-    initialState: hintState,
+    initialState: initialHintState,
     reducers: {
         showHint: (state, action) => {
             state.hint = action.payload;
@@ -159,7 +160,7 @@ const store = configureStore({
         map: dealWithMapSlice.reducer,
         summary: summarySlice.reducer,
         hint: hintSlice.reducer,
-        summaryData: summaryDataSlice.reducer
+        summaryData: summaryDataSlice.reducer,
     }
 });
 

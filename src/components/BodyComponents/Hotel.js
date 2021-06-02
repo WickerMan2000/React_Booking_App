@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { hintActions, mapActions, summaryActions, summaryDataActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
-const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, id }) => {
+const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, id, isClicked }) => {
     const readyToContinue = useSelector(state => state.calendar.readyForDeal);
+    const clickedRef = useRef(isClicked);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        clickedRef.current = isClicked;
+    }, [isClicked])
+
+    useEffect(() => {
         return () => {
-            dispatch(mapActions.changeCondition({ condition: false, id: id, unmount: true }));
+            clickedRef.current && dispatch(mapActions.changeCondition({ condition: false, id: id, unmount: true }));
         };
     }, [dispatch, id])
 

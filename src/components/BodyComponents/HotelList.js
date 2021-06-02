@@ -8,6 +8,7 @@ const HotelList = React.memo(() => {
     const filteredValue = useSelector(state => state.filters.filter);
     const roomTypeValue = useSelector(state => state.filters.roomtype);
     const outPutData = useSelector(state => state.searcher.text);
+    const identity = useSelector(state => state.map.identity);
     const dispatch = useDispatch();
     let combinedData = outPutData;
 
@@ -28,7 +29,7 @@ const HotelList = React.memo(() => {
 
     return (
         <ul>
-            {combinedData.map((hotel, index) =>
+            {combinedData.map(hotel =>
                 hotel.price > sliderValue &&
                 (
                     <Hotel
@@ -41,6 +42,7 @@ const HotelList = React.memo(() => {
                         thumbnail={hotel.thumbnail}
                         filters={hotel.filters}
                         map={hotel.mapurl}
+                        isClicked={identity === hotel.key ? true : false}
                     />
                 ))}
         </ul>

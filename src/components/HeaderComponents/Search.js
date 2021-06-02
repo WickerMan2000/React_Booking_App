@@ -17,7 +17,7 @@ const Search = () => {
         const result = [];
         for (const key in data) {
             result.push({
-                key: Math.floor(Math.random() * 10),
+                key: Math.floor(Math.random() * 100),
                 city: data[key].city,
                 filters: data[key].filters,
                 guestrating: data[key].guestrating,

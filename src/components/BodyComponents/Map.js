@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import styles from './Map.module.css';
 
@@ -7,14 +7,6 @@ const Map = React.memo(() => {
     const identity = useSelector(state => state.map.identity);
     const isUnmounted = useSelector(state => state.map.isUnmounted);
     const getTheMap = useSelector(state => state.map.map);
-    const identityRef = useRef(identity);
-    const mapRef = useRef(getTheMap);
-    const presupposition = isUnmounted && identity && identityRef.current;
-
-    useEffect(() => {
-        identityRef.current = identity;
-        mapRef.current = getTheMap;
-    }, [identity, getTheMap])
 
     return (
         <iframe
@@ -22,10 +14,8 @@ const Map = React.memo(() => {
             height={70}
             className={styles.Map}
             title="Hotel Location"
-            src={presupposition && identity === identityRef.current ? cleanMap && getTheMap :
-                presupposition && identity !== identityRef.current ? !cleanMap && mapRef.current :
-                    getTheMap}>
-        </iframe>
+            src={isUnmounted && identity ? cleanMap && getTheMap : getTheMap}>
+        </iframe >
     );
 })
 

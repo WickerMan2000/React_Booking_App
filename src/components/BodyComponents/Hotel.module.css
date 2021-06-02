@@ -65,7 +65,7 @@ img + button {
     font-size: large;
     font-weight: bolder;
     color: blanchedalmond;
-    background: rgba(57, 156, 102, 0.6);
+    background: rgb(56, 175, 175);
     border: 2px solid black;
     border-radius: 16px;
     cursor: pointer;
@@ -78,7 +78,7 @@ img + button:focus {
 img + button:hover,
 img + button:active {
     background: blanchedalmond;
-    color: rgba(57, 156, 102, 0.6);
+    color: rgb(56, 175, 175);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
   }
 
