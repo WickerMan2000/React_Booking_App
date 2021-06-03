@@ -23,16 +23,10 @@ const Check = React.memo(({ title, initialDate, enableCalendar, itIsCheckedIn, i
         if (itIsCheckedIn && !itIsCheckedOut) {
             setCheckInState(true);
             dispatch(hintActions.showHint(false));
-            dispatch(calendarActions.checkIn({
-                inputCheck: value,
-                enable: true
-            }));
+            dispatch(calendarActions.checkIn({ inputCheck: value, enable: true }));
         } else if (!(!itIsCheckedIn && itIsCheckedOut)) {
             dispatch(hintActions.showHint(false));
-            dispatch(calendarActions.checkOut({
-                inputCheck: value,
-                enable: true
-            }));
+            dispatch(calendarActions.checkOut({ inputCheck: value, enable: true }));
         }
     }
 

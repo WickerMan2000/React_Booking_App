@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hintActions, mapActions, summaryActions, summaryDataActions } from '../../Store/index';
 import styles from './Hotel.module.css';
 
-const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, id, isClicked }) => {
+const Hotel = React.memo(({ thumbnail, city, guestRating, hotelName, price, filters, map, id, isClicked }) => {
     const readyToContinue = useSelector(state => state.calendar.readyForDeal);
     const clickedRef = useRef(isClicked);
     const dispatch = useDispatch();
@@ -48,6 +48,6 @@ const Hotel = ({ thumbnail, city, guestRating, hotelName, price, filters, map, i
             <button onClick={clickIt}>View Map</button>
         </div>
     );
-}
+})
 
 export default Hotel;
