@@ -18,6 +18,7 @@ const SummaryModal = ({ onClick }) => {
             <div className={styles.CheckOut}>To: {checkInOutDates[1]}</div>
             <img className={styles.Image} src={image} alt="Just a Pic" />
             <button className={styles.SummaryButton} onClick={onClick}>Cancel</button>
+            <button className={[styles.SummaryButton, styles.ContinueButton].join(" ")}>Continue</button>
         </div>
     );
 }

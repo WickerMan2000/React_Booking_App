@@ -97,6 +97,10 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
 }
 
+.ContinueButton {
+  grid-column: 6/7;
+}
+
 @keyframes summary-appears {
     from {
       opacity: 0;
