@@ -3,7 +3,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 const initialDate = new Date();
 const defaultDate = initialDate.getFullYear() + "-" + (initialDate.getMonth() + 1) + "-" + initialDate.getDate();
 
-const initialPriceSliderState = { price: 0 };
+const initialPriceSliderState = { price: 2000 };
 const initialSearchedTextState = { text: [] };
 const initialCalendarState = {
     enabled: false,

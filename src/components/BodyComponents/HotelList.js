@@ -30,7 +30,7 @@ const HotelList = React.memo(() => {
     return (
         <ul>
             {combinedData.map(hotel =>
-                hotel.price > sliderValue &&
+                hotel.price < sliderValue &&
                 (
                     <Hotel
                         id={hotel.key}
