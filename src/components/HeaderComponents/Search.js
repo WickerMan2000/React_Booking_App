@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { searchedTextActions } from '../../Store/index';
 import Button from '../../UI/Button';
+import { nanoid } from 'nanoid';
 import styles from './Search.module.css';
-import { useDispatch } from 'react-redux';
 
 const Search = () => {
     const [enteredText, setEnteredText] = useState('');
@@ -13,23 +14,23 @@ const Search = () => {
     const queryFunction = useCallback(async () => {
         const query = enteredText.length !== 0 && `?orderBy="city"&equalTo="${enteredText}"`;
         const response = await fetch('https://mybooking-28176-default-rtdb.firebaseio.com/1/entries.json' + query);
-        const data = await response.json();
+        let data = await response.json();
         const result = [];
-        for (const key in data) {
+        data = Object.values(data);
+        data.forEach(element =>
             result.push({
-                key: Math.floor(Math.random() * 100),
-                city: data[key].city,
-                filters: data[key].filters,
-                guestrating: data[key].guestrating,
-                hotelName: data[key].hotelName,
-                mapurl: data[key].mapurl,
-                price: data[key].price,
-                rating: data[key].rating,
-                ratings: data[key].ratings,
-                thumbnail: data[key].thumbnail,
-                roomtype: data[key].roomtype
-            })
-        }
+                key: nanoid(),
+                city: element.city,
+                filters: element.filters,
+                guestrating: element.guestrating,
+                hotelName: element.hotelName,
+                mapurl: element.mapurl,
+                price: element.price,
+                rating: element.rating,
+                ratings: element.ratings,
+                thumbnail: element.thumbnail,
+                roomtype: element.roomtype
+            }));
         setResult(result);
     }, [enteredText])
 
