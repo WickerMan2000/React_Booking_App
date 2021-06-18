@@ -1,0 +1,27 @@
+.warning {
+  width: 600px;
+  height: 200px;
+  margin-left: 25rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 1rem;
+  list-style: none;
+  text-align: center;
+  border-radius: 12px;
+  border: 0.3rem solid;
+  background-color: rgba(255, 255, 255, 0.6);
+  animation: hotel-appears 800ms ease-out forwards;
+}
+
+@keyframes hotel-appears {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(1rem);
+  }
+}

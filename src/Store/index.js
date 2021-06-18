@@ -4,7 +4,7 @@ const initialDate = new Date();
 const defaultDate = initialDate.getFullYear() + "-" + (initialDate.getMonth() + 1) + "-" + initialDate.getDate();
 
 const initialPriceSliderState = { price: 2000 };
-const initialSearchedTextState = { text: [] };
+const initialSearchedTextState = { text: [], flag: false };
 const initialCalendarState = {
     enabled: false,
     checkInDates: defaultDate,
@@ -36,7 +36,8 @@ const searchedTextSlice = createSlice({
     initialState: initialSearchedTextState,
     reducers: {
         searchText: (state, action) => {
-            state.text = action.payload;
+            state.text = action.payload.result;
+            state.flag = action.payload.flag;
         }
     }
 });
