@@ -1,7 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import config from "../../config";
 import AuthContext from "./AuthContext";
 import styles from "./AuthenticationForm.module.css";
+
+const key = config.API_KEY;
 
 const AuthenticationForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -26,10 +29,10 @@ const AuthenticationForm = () => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB2Xe41TNsq5x1YcTOaAEDHcy1yjoB9PRM";
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`;
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB2Xe41TNsq5x1YcTOaAEDHcy1yjoB9PRM";
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
     }
     fetch(url, {
       method: "POST",
