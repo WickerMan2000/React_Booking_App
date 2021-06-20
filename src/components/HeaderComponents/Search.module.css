@@ -3,11 +3,11 @@
     display: grid;
     grid-template-columns: repeat(15, 1fr);
     grid-template-rows: repeat(10, 10%);
-    grid-column: 1/5;
+    grid-column: 1/3;
 }
 
 .SearchBar {
-    grid-column: 4/13;
+    grid-column: 4/15;
     grid-row: 3/8;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -15,7 +15,7 @@
 }
 
 input ~ Button {
-    grid-column: 13/14;
+    grid-column: 15/16;
     grid-row: 3/8;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -26,7 +26,7 @@ input ~ Button {
 .title {
     grid-row: 1/5;
     grid-column: 2/4;
-    font-size: xx-large;
+    font-size: 1.7rem;
     font-weight: bolder;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 1rem;

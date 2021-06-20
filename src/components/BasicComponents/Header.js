@@ -3,6 +3,7 @@ import Search from '../HeaderComponents/Search';
 import Check from '../HeaderComponents/Check';
 import PriceSlider from '../HeaderComponents/PriceSlider';
 import Option from '../HeaderComponents/Option';
+import LogStatus from '../Authentication/LogStatus';
 import styles from './Header.module.css';
 import locationStyles from '../HeaderComponents/Location.module.css';
 import roomTypeStyles from '../HeaderComponents/RoomType.module.css';
@@ -40,6 +41,7 @@ const Header = () => {
     return (
         <div className={styles.Header}>
             <Search />
+            <LogStatus />
             <Check
                 itIsCheckedIn={fix}
                 enableCalendar={false}

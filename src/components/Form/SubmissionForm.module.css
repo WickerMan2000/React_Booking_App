@@ -1,0 +1,9 @@
+.header {
+    z-index: 1000;
+    background: rgb(56, 175, 175);
+    height: 140px;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-align: center;
+  }
