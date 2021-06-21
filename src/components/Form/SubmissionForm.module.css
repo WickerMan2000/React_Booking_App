@@ -1,9 +1,74 @@
 .header {
-    z-index: 1000;
-    background: rgb(56, 175, 175);
-    height: 140px;
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: bolder;
-    text-align: center;
-  }
+  z-index: 1000;
+  background: rgb(56, 175, 175);
+  height: 140px;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.GenerealForm {
+  text-align: end;
+  margin-top: 15rem;
+  margin-left: 30rem;
+  border: 2px solid;
+  border-radius: 16px;
+  width: 40%;
+  background: rgb(56, 175, 175);
+}
+
+form label {
+  margin-right: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+form input {
+  width: 50%;
+  margin-right: 6rem;
+  border-radius: 6px;
+  height: 1.7rem;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #240370;
+  border: 1px solid #240370;
+  color: white;
+  margin-right: 6px;
+  border-radius: 16px;
+  cursor: pointer;
+  width: 20%;
+  height: 20%;
+}
+
+form button:hover,
+form button:active {
+  background-color: #33059e;
+  border-color: #33059e;
+}
+
+form button:disabled,
+form button:disabled:hover,
+form button:disabled:active {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #292929;
+  cursor: not-allowed;
+}
+
+.actions {
+  text-align: right;
+}
+
+.actions button {
+  margin-left: 1rem;
+}

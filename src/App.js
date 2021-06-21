@@ -25,7 +25,8 @@ function App() {
             <AuthenticationForm />
           </Route>
         )}
-        {authContex.isLoggedIn && (
+        {authContex.isLoggedIn && 
+        (
           <Route path="/form">
             <SubmissionForm />
           </Route>

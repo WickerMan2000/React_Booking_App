@@ -22,7 +22,7 @@ const Search = () => {
     let data = await response.json();
     const result = [];
     data = Object.values(data);
-    data.forEach((element) =>
+    data.forEach(element =>
       result.push({
         key: nanoid(),
         city: element.city,
@@ -49,7 +49,7 @@ const Search = () => {
     return () => setIsClicked(false);
   }, [isClicked, queryFunction, dispatch]);
 
-  const getSearchedText = (event) => {
+  const getSearchedText = event => {
     const { value } = event.target;
     setEnteredText(value);
   };
