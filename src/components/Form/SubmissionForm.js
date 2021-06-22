@@ -6,7 +6,7 @@ import styles from "./SubmissionForm.module.css";
 
 const SubmissionForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
-  
+
   const {
     inputCase: firstName,
     touchInput: touchInputFirstName,
@@ -66,6 +66,18 @@ const SubmissionForm = () => {
     emailAddressSubmissionCase();
   };
 
+  const submitHandler = () => {
+    fetch("https://auth-booking-default-rtdb.firebaseio.com/deal.json", {
+      method: "POST",
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        emailAddress: emailAddress,
+      }),
+    });
+  };
+
   return (
     <div className={styles.header}>
       <Link to="/" style={{ textDecoration: "none" }}>
@@ -117,9 +129,13 @@ const SubmissionForm = () => {
           changeHandler={emailAddressChangeHandler}
           blurHandler={emailAddressBlurHandler}
         />
-        <div className={styles.actions}>
-          <button disabled={!formIsValid}>Submit</button>
-        </div>
+        <Link to={formIsValid && "/"}>
+          <div className={styles.actions}>
+            <button disabled={!formIsValid} onClick={submitHandler}>
+              Submit
+            </button>
+          </div>
+        </Link>
       </form>
     </div>
   );

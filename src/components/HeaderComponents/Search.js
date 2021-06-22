@@ -10,9 +10,11 @@ const Search = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [result, setResult] = useState({});
   const [flag, setFlag] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
   const dispatch = useDispatch();
 
   const queryFunction = useCallback(async () => {
+    setIsTouched(false);
     const query =
       enteredText.length !== 0 && `?orderBy="city"&equalTo="${enteredText}"`;
     const response = await fetch(
@@ -37,8 +39,8 @@ const Search = () => {
         roomtype: element.roomtype,
       })
     );
-    setResult(result);
     setFlag(true);
+    setResult(result);
   }, [enteredText]);
 
   useEffect(() => {
@@ -61,6 +63,7 @@ const Search = () => {
         type="text"
         className={styles.SearchBar}
         onChange={getSearchedText}
+        onFocus={() => setIsTouched(true)}
         value={(
           enteredText.charAt(0).toUpperCase() + enteredText.slice(1)
         ).trim()}
@@ -70,6 +73,11 @@ const Search = () => {
         onClick={() => setIsClicked(true)}
         disabled={enteredText.length === 0}
       ></Button>
+      {isTouched && (
+        <p className={styles.attentionMessage}>
+          Due to data limitations, results show up only for Paris, Toulouz and Marseille.
+        </p>
+      )}
     </div>
   );
 };

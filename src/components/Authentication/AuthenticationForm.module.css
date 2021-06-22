@@ -65,6 +65,7 @@ section p {
   border-radius: 4px;
   padding: 0.5rem 2.5rem;
   width: 50%;
+  margin-left: 14rem;
 }
 
 .actions button:hover {
