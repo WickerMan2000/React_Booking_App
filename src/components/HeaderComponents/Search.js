@@ -8,9 +8,9 @@ import styles from "./Search.module.css";
 const Search = () => {
   const [enteredText, setEnteredText] = useState("");
   const [isClicked, setIsClicked] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
   const [result, setResult] = useState({});
   const [flag, setFlag] = useState(false);
-  const [isTouched, setIsTouched] = useState(false);
   const dispatch = useDispatch();
 
   const queryFunction = useCallback(async () => {
@@ -63,7 +63,7 @@ const Search = () => {
         type="text"
         className={styles.SearchBar}
         onChange={getSearchedText}
-        onFocus={() => setIsTouched(true)}
+        onFocus={() => enteredText.length === 0 && setIsTouched(true)}
         value={(
           enteredText.charAt(0).toUpperCase() + enteredText.slice(1)
         ).trim()}
