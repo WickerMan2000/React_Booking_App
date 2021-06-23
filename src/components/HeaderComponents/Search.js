@@ -15,8 +15,13 @@ const Search = () => {
 
   const queryFunction = useCallback(async () => {
     setIsTouched(false);
+    const trimmedEnteredText = enteredText.trim();
     const query =
-      enteredText.length !== 0 && `?orderBy="city"&equalTo="${enteredText}"`;
+      trimmedEnteredText.length !== 0 &&
+      `?orderBy="city"&equalTo="${
+        trimmedEnteredText.charAt(0).toUpperCase() +
+        trimmedEnteredText.slice(1).toLowerCase()
+      }"`;
     const response = await fetch(
       "https://mybooking-28176-default-rtdb.firebaseio.com/1/entries.json" +
         query
@@ -64,9 +69,7 @@ const Search = () => {
         className={styles.SearchBar}
         onChange={getSearchedText}
         onFocus={() => enteredText.length === 0 && setIsTouched(true)}
-        value={(
-          enteredText.charAt(0).toUpperCase() + enteredText.slice(1)
-        ).trim()}
+        value={enteredText}
       />
       <Button
         title="Search"
@@ -75,7 +78,8 @@ const Search = () => {
       ></Button>
       {isTouched && (
         <p className={styles.attentionMessage}>
-          Due to data limitations, results show up only for Paris, Toulouz and Marseille.
+          Due to data limitations, results show up only for Paris, Toulouz and
+          Marseille.
         </p>
       )}
     </div>
