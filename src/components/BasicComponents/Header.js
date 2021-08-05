@@ -22,7 +22,7 @@ const Header = () => {
                 roomtype: roomData.name
             };
         })
-        setRoomTypes(roomTypes.concat(result));
+        setRoomTypes(state => state.concat(result));
     }, [])
 
     const cityDataLocation = useCallback(async data => {

@@ -26,7 +26,7 @@ const Body = () => {
         const filteredArray = result.filter(object =>
             !newObject[object.name] && (newObject[object.name] = true)
         );
-        setFilters(filters.concat(...filteredArray));
+        setFilters(state => state.concat(...filteredArray));
     }, [])
 
     return (
