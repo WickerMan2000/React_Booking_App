@@ -14,9 +14,9 @@ const Body = () => {
     const [filters, setFilters] = useState([{ name: 'All' }]);
     const dispatch = useDispatch();
 
-    const sortingOption = useCallback(async data => {
+    const sortingOption = useCallback(data => {
         const newObject = {}
-        const result = await data.entries.map(hotelData => {
+        const result = data.entries.map(hotelData => {
             return hotelData.filters.map(filter => {
                 return {
                     name: filter.name

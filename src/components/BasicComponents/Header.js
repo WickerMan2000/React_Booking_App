@@ -16,8 +16,8 @@ const Header = () => {
     const checkInOutDates = useSelector(state => Object.values(state.calendar.checkInOutDates));
     const fix = true;
 
-    const roomDataName = useCallback(async data => {
-        const result = await data.roomtypes.map(roomData => {
+    const roomDataName = useCallback(data => {
+        const result = data.roomtypes.map(roomData => {
             return {
                 roomtype: roomData.name
             };
@@ -25,9 +25,9 @@ const Header = () => {
         setRoomTypes(state => state.concat(result));
     }, [])
 
-    const cityDataLocation = useCallback(async data => {
+    const cityDataLocation = useCallback(data => {
         const newObject = {}
-        const result = await data.entries.map(hotelData => {
+        const result = data.entries.map(hotelData => {
             return {
                 location: hotelData.city
             };
